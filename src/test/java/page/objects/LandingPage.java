@@ -11,4 +11,6 @@ public class LandingPage {
     public SelenideElement passwordField = $(byXpath("//*[@data-test='password']"));
     public SelenideElement loginButton = $(byXpath("//*[@data-test='login-button']"));
 
+    public SelenideElement loginErrorToastMessage = $(byXpath("//*[@data-test='error']"));
+
 }

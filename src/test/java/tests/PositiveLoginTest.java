@@ -25,6 +25,7 @@ public class PositiveLoginTest {
         $(landingPage.passwordField).setValue("secret_sauce");
         $(landingPage.loginButton).click();
 
+        /*Assertion*/
         $(productsPage.logoName).shouldBe(Condition.visible);
         $(productsPage.logoName).shouldHave(Condition.exactText("Swag Labs"));
 
