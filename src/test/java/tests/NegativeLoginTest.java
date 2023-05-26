@@ -24,4 +24,45 @@ public class NegativeLoginTest {
 
     }
 
+    @Test
+    public void unsuccessfulLoginWithOnlyLoginCredential(){
+
+        LandingPage landingPage = new LandingPage();
+
+        open("https://www.saucedemo.com/");
+        $(landingPage.loginField).setValue("login");
+        $(landingPage.loginButton).click();
+
+        /*Assertion*/
+        $(landingPage.loginErrorToastMessage).shouldHave(Condition.exactText("Epic sadface: Password is required"));
+
+    }
+
+    @Test
+    public void unsuccessfulLoginWithOnlyPasswordCredential(){
+
+        LandingPage landingPage = new LandingPage();
+
+        open("https://www.saucedemo.com/");
+        $(landingPage.passwordField).setValue("password");
+        $(landingPage.loginButton).click();
+
+        /*Assertion*/
+        $(landingPage.loginErrorToastMessage).shouldHave(Condition.exactText("Epic sadface: Username is required"));
+
+    }
+
+    @Test
+    public void unsuccessfulLoginWithoutCredentials(){
+
+        LandingPage landingPage = new LandingPage();
+
+        open("https://www.saucedemo.com/");
+        $(landingPage.loginButton).click();
+
+        /*Assertion*/
+        $(landingPage.loginErrorToastMessage).shouldHave(Condition.exactText("Epic sadface: Username is required"));
+
+    }
+
 }

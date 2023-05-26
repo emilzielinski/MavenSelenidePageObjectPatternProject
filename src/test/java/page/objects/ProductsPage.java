@@ -3,8 +3,7 @@ package page.objects;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
-import static com.codeborne.selenide.Selectors.byClassName;
-import static com.codeborne.selenide.Selectors.byId;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -14,5 +13,8 @@ public class ProductsPage {
     public SelenideElement hamburgerMenuButton = $(byId("react-burger-menu-btn"));
     public ElementsCollection table = $$(byClassName("bm-item"));
     public SelenideElement aboutSection = $(byId("about_sidebar_link"));
+    public SelenideElement sortContainer = $(byXpath("//*[@data-test='product_sort_container']"));
+    public ElementsCollection inventoryContainer = $$(byClassName("inventory_item_name"));
+
 
 }
