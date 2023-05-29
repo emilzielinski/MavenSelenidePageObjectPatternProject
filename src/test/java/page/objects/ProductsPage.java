@@ -14,7 +14,8 @@ public class ProductsPage {
     public ElementsCollection table = $$(byClassName("bm-item"));
     public SelenideElement aboutSection = $(byId("about_sidebar_link"));
     public SelenideElement sortContainer = $(byXpath("//*[@data-test='product_sort_container']"));
-    public ElementsCollection inventoryContainer = $$(byClassName("inventory_item_name"));
+    public ElementsCollection inventoryNameContainer = $$(byClassName("inventory_item_name"));
+    public ElementsCollection inventoryPriceContainer = $$(byClassName("inventory_item_price"));
 
 
 }

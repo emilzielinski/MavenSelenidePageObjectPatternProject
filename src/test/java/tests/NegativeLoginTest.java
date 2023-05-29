@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class NegativeLoginTest {
 
     @Test
-    public void unsuccessfulLoginWithBadCredentials(){
+    public void unsuccessfulLoginWithBadCredentials() {
 
         LandingPage landingPage = new LandingPage();
 
@@ -21,11 +21,12 @@ public class NegativeLoginTest {
 
         /*Assertion*/
         $(landingPage.loginErrorToastMessage).shouldHave(Condition.exactText("Epic sadface: Username and password do not match any user in this service"));
+        /*End of assertion*/
 
     }
 
     @Test
-    public void unsuccessfulLoginWithOnlyLoginCredential(){
+    public void unsuccessfulLoginWithOnlyLoginCredential() {
 
         LandingPage landingPage = new LandingPage();
 
@@ -35,11 +36,12 @@ public class NegativeLoginTest {
 
         /*Assertion*/
         $(landingPage.loginErrorToastMessage).shouldHave(Condition.exactText("Epic sadface: Password is required"));
+        /*End of assertion*/
 
     }
 
     @Test
-    public void unsuccessfulLoginWithOnlyPasswordCredential(){
+    public void unsuccessfulLoginWithOnlyPasswordCredential() {
 
         LandingPage landingPage = new LandingPage();
 
@@ -49,11 +51,12 @@ public class NegativeLoginTest {
 
         /*Assertion*/
         $(landingPage.loginErrorToastMessage).shouldHave(Condition.exactText("Epic sadface: Username is required"));
+        /*End of assertion*/
 
     }
 
     @Test
-    public void unsuccessfulLoginWithoutCredentials(){
+    public void unsuccessfulLoginWithoutCredentials() {
 
         LandingPage landingPage = new LandingPage();
 
@@ -62,6 +65,7 @@ public class NegativeLoginTest {
 
         /*Assertion*/
         $(landingPage.loginErrorToastMessage).shouldHave(Condition.exactText("Epic sadface: Username is required"));
+        /*End of assertion*/
 
     }
 

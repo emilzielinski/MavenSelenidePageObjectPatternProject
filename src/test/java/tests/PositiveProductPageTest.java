@@ -2,6 +2,7 @@ package tests;
 
 import com.codeborne.selenide.Condition;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.objects.ProductsPage;
 
@@ -11,7 +12,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class PositiveProductPageTest extends PositiveLoginTest {
 
     @Test
-    public void successfulSelectSectionFromHamburgerMenu(){
+    public void successfulSelectSectionFromHamburgerMenu() {
 
         successfulLoginWithGoodCredentials();
 
@@ -31,23 +32,22 @@ public class PositiveProductPageTest extends PositiveLoginTest {
     }
 
     @Test
-    public void successfulDescendingSorting() {
+    public void successfulDescendingNameSorting() {
 
         successfulLoginWithGoodCredentials();
 
         ProductsPage productsPage = new ProductsPage();
 
         productsPage.sortContainer.selectOption(1);
-//        System.out.println(productsPage.inventoryContainer.get(0).getText());
 
         /*Assertion*/
-        $(productsPage.inventoryContainer.get(0)).shouldHave(Condition.exactText("Test.allTheThings() T-Shirt (Red)"));
+        productsPage.inventoryNameContainer.get(0).shouldHave(Condition.exactText("Test.allTheThings() T-Shirt (Red)"));
         /*End of assertion*/
 
     }
 
     @Test
-    public void successfulAscendingSorting() {
+    public void successfulAscendingNameSorting() {
 
         successfulLoginWithGoodCredentials();
 
@@ -55,12 +55,38 @@ public class PositiveProductPageTest extends PositiveLoginTest {
 
         productsPage.sortContainer.selectOption(1);
         productsPage.sortContainer.selectOption(0);
-//        System.out.println(productsPage.inventoryContainer.get(0).getText());
 
         /*Assertion*/
-        $(productsPage.inventoryContainer.get(0)).shouldHave(Condition.exactText("Sauce Labs Backpack"));
+        productsPage.inventoryNameContainer.get(0).shouldHave(Condition.exactText("Sauce Labs Backpack"));
         /*End of assertion*/
 
     }
 
+
+    @Test
+    public void successfulAscendingPriceSorting() {
+
+        successfulLoginWithGoodCredentials();
+
+        ProductsPage productsPage = new ProductsPage();
+
+        productsPage.sortContainer.selectOption(2);
+
+        int sizeOfTheProductList = productsPage.inventoryPriceContainer.size();
+
+        for (int i = 0; i <= sizeOfTheProductList; i++) {
+            for (int j = i + 1; j < sizeOfTheProductList; j++) {
+                float price1 = Float.parseFloat(productsPage.inventoryPriceContainer.get(i).getText().substring(1));
+                float price2 = Float.parseFloat(productsPage.inventoryPriceContainer.get(j).getText().substring(1));
+
+                /*Assertion*/
+                if (price1 > price2) {
+                    Assert.fail("Price 1: " + price1 + " is greater than price 2: " + price2);
+                }
+                /*End of assertion*/
+                /*Comment: I had to use TestNG Assertion due to Selenide limitations*/
+
+            }
+        }
+    }
 }

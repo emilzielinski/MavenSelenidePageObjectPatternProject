@@ -14,8 +14,9 @@ public class PositiveLoginTest {
     public void setUp() {
         Configuration.timeout = 6000;
     }
+
     @Test
-    public void successfulLoginWithGoodCredentials(){
+    public void successfulLoginWithGoodCredentials() {
         open("https://www.saucedemo.com/");
 
         LandingPage landingPage = new LandingPage();
@@ -28,6 +29,7 @@ public class PositiveLoginTest {
         /*Assertion*/
         $(productsPage.logoName).shouldBe(Condition.visible);
         $(productsPage.logoName).shouldHave(Condition.exactText("Swag Labs"));
+        /*End of assertion*/
 
     }
 
